@@ -19,13 +19,14 @@ $result = mysqli_query($conn, $sql);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
 <div class="flex">
     <div class="w-64 bg-gray-800 text-white h-screen p-4 fixed">
-        <h3 class="text-xl font-bold mb-4">Admin Panel</h3>
+        <h3 class="text-xl font-bold mb-4">ADMIN PANEL</h3>
         <a href="admin_dashboard.php" class="block py-2 px-4 hover:bg-blue-500">🏠 Dashboard</a>
         <a href="medication_list.php" class="block py-2 px-4 hover:bg-blue-500">💊 Medication List</a>
         <a href="illness_list.php" class="block py-2 px-4 hover:bg-blue-500">🩺 Illness List</a>

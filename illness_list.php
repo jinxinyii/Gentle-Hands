@@ -19,169 +19,98 @@ if (!$result) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Illness List</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .wrapper {
-            display: flex;
-        }
-        .sidebar {
-            width: 250px;
-            background: #343a40;
-            color: white;
-            padding: 15px;
-            height: 100vh;
-            position: fixed;
-        }
-        .sidebar a {
-            color: white;
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-        }
-        .sidebar a:hover {
-            background: #007bff;
-        }
-        .content {
-            margin-left: 270px;
-            padding: 20px;
-            width: calc(100% - 270px);
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px gray;
-        }
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-        .btn-container {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        .btn {
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-        }
-        .btn-back {
-            background: red;
-        }
-        .btn-print {
-            background: #17a2b8;
-        }
-        .btn:hover {
-            opacity: 0.8;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background: #007bff;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-        tr:hover {
-            background: #f1f1f1;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script>
         function printTable() {
             window.print();
         }
     </script>
 </head>
-<body>
+<body class="bg-gray-100">
 
-<div class="wrapper">
-    <div class="sidebar">
-        <h3>Admin Panel</h3>
-        <a href="admin_dashboard.php">🏠 Dashboard</a>
-        <a href="medication_list.php">💊 Medication List</a>
-        <a href="illness_list.php">🩺 Illness List</a>
-        <a href="tables.php">📊 Tables</a>
-        <a href="logout.php">🚪 Logout</a>
+<div class="flex">
+    <div class="w-64 bg-gray-800 text-white h-screen p-4 fixed">
+        <h3 class="text-xl font-bold mb-4">ADMIN PANEL</h3>
+        <a href="admin_dashboard.php" class="block py-2 px-4 hover:bg-blue-500">🏠 Dashboard</a>
+        <a href="medication_list.php" class="block py-2 px-4 hover:bg-blue-500">💊 Medication List</a>
+        <a href="illness_list.php" class="block py-2 px-4 hover:bg-blue-500">🩺 Illness List</a>
+        <a href="tables.php" class="block py-2 px-4 hover:bg-blue-500">📊 Tables</a>
+        <a href="logout.php" class="block py-2 px-4 hover:bg-blue-500">🚪 Logout</a>
     </div>
 
-    <div class="content">
-        <div class="container">
-            <h2>Illness List</h2>
+    <div class="ml-64 p-4 w-full">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-center mb-4">Illness List</h2>
 
-            <div class="btn-container">
-                <a href="admin_dashboard.php" class="btn btn-back">Back to Dashboard</a>
-                <a href="#" class="btn btn-print" onclick="printTable()">Print</a>
+            <div class="flex justify-between mb-4">
+                <a href="admin_dashboard.php" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700">Back to Dashboard</a>
+                <a href="#" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" onclick="printTable()">Print</a>
             </div>
 
-            <h3>Child Information</h3>
-            <table>
-                <tr>
-                    <th>Full Name</th>
-                    <th>Birthdate</th>
-                    <th>Current Age</th>
-                    <th>Date of Birth</th>
-                </tr>
-                <?php while ($illness = mysqli_fetch_assoc($result)) { ?>
-                    <tr>
-                        <td><?= $illness['child_name'] ?></td>
-                        <td><?= $illness['birthdate'] ?></td>
-                        <td><?= $illness['current_age'] ?></td>
-                        <td><?= $illness['date_of_birth'] ?></td>
-                    </tr>
-                <?php } ?>
-            </table>
+            <h3 class="text-xl font-semibold mb-2">Child Information</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="py-2 px-4 border-b text-center">Full Name</th>
+                            <th class="py-2 px-4 border-b text-center">Birthdate</th>
+                            <th class="py-2 px-4 border-b text-center">Current Age</th>
+                            <th class="py-2 px-4 border-b text-center">Date of Birth</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($illness = mysqli_fetch_assoc($result)) { ?>
+                            <tr class="hover:bg-gray-100">
+                                <td class="py-2 px-4 border-b text-center"><?= $illness['child_name'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $illness['birthdate'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $illness['current_age'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $illness['date_of_birth'] ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
 
-            <h3>Illness Records</h3>
-            <table>
-                <tr>
-                    <th>Date</th>
-                    <th>Illness/Treatment</th>
-                    <th>Medication</th>
-                    <th>Mg/Kg/Day</th>
-                    <th>Dose</th>
-                    <th>Frequency</th>
-                    <th>Duration</th>
-                    <th>Start</th>
-                    <th>End</th>
-                </tr>
-                <?php 
-                mysqli_data_seek($result, 0); // Reset pointer for reuse
-                while ($illness = mysqli_fetch_assoc($result)) { ?>
-                    <tr>
-                        <td><?= $illness['date'] ?></td>
-                        <td><?= $illness['illness_treatment'] ?></td>
-                        <td><?= $illness['medication'] ?></td>
-                        <td><?= $illness['mg_kg_day'] ?></td>
-                        <td><?= $illness['dose'] ?></td>
-                        <td><?= $illness['frequency'] ?></td>
-                        <td><?= $illness['duration'] ?></td>
-                        <td><?= $illness['start_date'] ?></td>
-                        <td><?= $illness['end_date'] ?></td>
-                    </tr>
-                <?php } ?>
-            </table>
+            <h3 class="text-xl font-semibold mb-2 mt-4">Illness Records</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="py-2 px-4 border-b text-center">Date</th>
+                            <th class="py-2 px-4 border-b text-center">Illness/Treatment</th>
+                            <th class="py-2 px-4 border-b text-center">Medication</th>
+                            <th class="py-2 px-4 border-b text-center">Mg/Kg/Day</th>
+                            <th class="py-2 px-4 border-b text-center">Dose</th>
+                            <th class="py-2 px-4 border-b text-center">Frequency</th>
+                            <th class="py-2 px-4 border-b text-center">Duration</th>
+                            <th class="py-2 px-4 border-b text-center">Start</th>
+                            <th class="py-2 px-4 border-b text-center">End</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                        mysqli_data_seek($result, 0); // Reset pointer for reuse
+                        while ($illness = mysqli_fetch_assoc($result)) { ?>
+                            <tr class="hover:bg-gray-100">
+                                <td class="py-2 px-4 border-b text-center"><?= $illness['date'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $illness['illness_treatment'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $illness['medication'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $illness['mg_kg_day'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $illness['dose'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $illness['frequency'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $illness['duration'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $illness['start_date'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $illness['end_date'] ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     </div>
 </div>
-
 </body>
 </html>

@@ -37,7 +37,31 @@ $medication_result = mysqli_query($conn, $medication_query);
 
             <div class="flex justify-between mb-4">
                 <a href="admin_dashboard.php" class="bg-red-500 text-white py-2 px-4 rounded hover:opacity-80">Back to Dashboard</a>
-                <a href="add_medication.php" class="bg-green-500 text-white py-2 px-4 rounded hover:opacity-80">Add Medication</a>
+                <a href="#" class="bg-green-500 text-white py-2 px-4 rounded hover:opacity-80" onclick="document.getElementById('addMedicationModal').style.display='block'">Add Medication</a>
+            </div>
+
+            <div id="addMedicationModal" class="fixed z-10 inset-0 overflow-y-auto" style="display:none;">
+                <div class="flex items-center justify-center min-h-screen">
+                    <div class="bg-white p-6 rounded-lg shadow-lg w-1/3">
+                        <span class="absolute top-0 right-0 p-4 cursor-pointer" onclick="document.getElementById('addMedicationModal').style.display='none'">&times;</span>
+                        <h2 class="text-2xl font-bold text-center mb-4">Add Medication</h2>
+                        <form method="POST" action="add_medication.php">
+                            <input type="text" name="patient_group" placeholder="Group" required><br>
+                            <input type="text" name="patient_name" placeholder="Patient Name" required><br>
+                            <input type="text" name="prescribed_by" placeholder="Prescribed by" required><br>
+                            <input type="text" name="medicine_name" placeholder="Medicine Name" required><br>
+                            <input type="text" name="strength" placeholder="Strength" required><br>
+                            <input type="text" name="mg_kg_day" placeholder="Mg/Kg/Day" required><br>
+                            <input type="text" name="dose" placeholder="Dose" required><br>
+                            <input type="text" name="frequency" placeholder="Frequency" required><br>
+                            <input type="text" name="duration" placeholder="Duration" required><br>
+                            <input type="text" name="day" placeholder="Day"><br>
+                            <input type="text" name="week" placeholder="Week"><br>
+                            <input type="text" name="month" placeholder="Month"><br>
+                            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:opacity-80">Add Medication</button>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <div class="overflow-x-auto">

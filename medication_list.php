@@ -42,23 +42,23 @@ $medication_result = mysqli_query($conn, $medication_query);
 
             <div id="addMedicationModal" class="fixed z-10 inset-0 overflow-y-auto" style="display:none;">
                 <div class="flex items-center justify-center min-h-screen">
-                    <div class="bg-white p-6 rounded-lg shadow-lg w-1/3">
+                    <div class="bg-white p-6 rounded-lg shadow-lg w-1/3 relative">
                         <span class="absolute top-0 right-0 p-4 cursor-pointer" onclick="document.getElementById('addMedicationModal').style.display='none'">&times;</span>
                         <h2 class="text-2xl font-bold text-center mb-4">Add Medication</h2>
-                        <form method="POST" action="add_medication.php">
-                            <input type="text" name="patient_group" placeholder="Group" required><br>
-                            <input type="text" name="patient_name" placeholder="Patient Name" required><br>
-                            <input type="text" name="prescribed_by" placeholder="Prescribed by" required><br>
-                            <input type="text" name="medicine_name" placeholder="Medicine Name" required><br>
-                            <input type="text" name="strength" placeholder="Strength" required><br>
-                            <input type="text" name="mg_kg_day" placeholder="Mg/Kg/Day" required><br>
-                            <input type="text" name="dose" placeholder="Dose" required><br>
-                            <input type="text" name="frequency" placeholder="Frequency" required><br>
-                            <input type="text" name="duration" placeholder="Duration" required><br>
-                            <input type="text" name="day" placeholder="Day"><br>
-                            <input type="text" name="week" placeholder="Week"><br>
-                            <input type="text" name="month" placeholder="Month"><br>
-                            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:opacity-80">Add Medication</button>
+                        <form method="POST" action="add_medication.php" class="space-y-4">
+                            <input type="text" name="patient_group" placeholder="Group" required pattern="[A-Za-z\s]+" class="w-full p-2 border border-gray-300 rounded"><br>
+                            <input type="text" name="patient_name" placeholder="Patient Name" required pattern="[A-Za-z\s]+" class="w-full p-2 border border-gray-300 rounded"><br>
+                            <input type="text" name="prescribed_by" placeholder="Prescribed by" required pattern="[A-Za-z\s]+" class="w-full p-2 border border-gray-300 rounded"><br>
+                            <input type="text" name="medicine_name" placeholder="Medicine Name" required pattern="[A-Za-z\s]+" class="w-full p-2 border border-gray-300 rounded"><br>
+                            <input type="text" name="strength" placeholder="Strength" required pattern="\d+(\.\d{1,2})?" class="w-full p-2 border border-gray-300 rounded"><br>
+                            <input type="text" name="mg_kg_day" placeholder="Mg/Kg/Day" required pattern="\d+(\.\d{1,2})?" class="w-full p-2 border border-gray-300 rounded"><br>
+                            <input type="text" name="dose" placeholder="Dose" required pattern="\d+(\.\d{1,2})?" class="w-full p-2 border border-gray-300 rounded"><br>
+                            <input type="text" name="frequency" placeholder="Frequency" required pattern="\d+" class="w-full p-2 border border-gray-300 rounded"><br>
+                            <input type="text" name="duration" placeholder="Duration" required pattern="\d+" class="w-full p-2 border border-gray-300 rounded"><br>
+                            <input type="text" name="day" placeholder="Day" pattern="\d+" class="w-full p-2 border border-gray-300 rounded"><br>
+                            <input type="text" name="week" placeholder="Week" pattern="\d+" class="w-full p-2 border border-gray-300 rounded"><br>
+                            <input type="text" name="month" placeholder="Month" pattern="\d+" class="w-full p-2 border border-gray-300 rounded"><br>
+                            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:opacity-80 w-full">Add Medication</button>
                         </form>
                     </div>
                 </div>

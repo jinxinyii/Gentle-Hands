@@ -29,7 +29,6 @@ if (!$result) {
     </script>
 </head>
 <body class="bg-gray-100">
-
 <div class="flex">
     <div class="w-64 bg-gray-800 text-white h-screen p-4 fixed">
         <h3 class="text-xl font-bold mb-4">ADMIN PANEL</h3>
@@ -45,8 +44,8 @@ if (!$result) {
             <h2 class="text-2xl font-bold text-center mb-4">Illness List</h2>
 
             <div class="flex justify-between mb-4">
-                <a href="admin_dashboard.php" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700">Back to Dashboard</a>
-                <a href="#" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" onclick="printTable()">Print</a>
+                <a href="admin_dashboard.php" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">Back to Dashboard</a>
+                <a href="#" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" onclick="printTable()">Print</a>
             </div>
 
             <h3 class="text-xl font-semibold mb-2">Child Information</h3>
@@ -73,7 +72,7 @@ if (!$result) {
                 </table>
             </div>
 
-            <h3 class="text-xl font-semibold mb-2 mt-4">Illness Records</h3>
+            <h3 class="text-xl font-semibold mb-2">Illness Records</h3>
             <div class="overflow-x-auto">
                 <table class="min-w-full bg-white border border-gray-200">
                     <thead>
@@ -108,7 +107,6 @@ if (!$result) {
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
 </div>

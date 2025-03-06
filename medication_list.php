@@ -21,7 +21,6 @@ $medication_result = mysqli_query($conn, $medication_query);
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
-
 <div class="flex">
     <div class="w-64 bg-gray-800 text-white h-screen p-4 fixed">
         <h3 class="text-xl font-bold mb-4">ADMIN PANEL</h3>
@@ -37,8 +36,8 @@ $medication_result = mysqli_query($conn, $medication_query);
             <h2 class="text-2xl font-bold text-center mb-4">Medication List</h2>
 
             <div class="flex justify-between mb-4">
-                <a href="admin_dashboard.php" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700">Back to Dashboard</a>
-                <a href="add_medication.php" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700">Add Medication</a>
+                <a href="admin_dashboard.php" class="bg-red-500 text-white py-2 px-4 rounded hover:opacity-80">Back to Dashboard</a>
+                <a href="add_medication.php" class="bg-green-500 text-white py-2 px-4 rounded hover:opacity-80">Add Medication</a>
             </div>
 
             <div class="overflow-x-auto">
@@ -80,6 +79,5 @@ $medication_result = mysqli_query($conn, $medication_query);
         </div>
     </div>
 </div>
-
 </body>
 </html>

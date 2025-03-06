@@ -44,33 +44,33 @@ $medication_result = mysqli_query($conn, $medication_query);
                 <table class="min-w-full bg-white border border-gray-200">
                     <thead>
                         <tr>
-                            <th class="py-2 px-4 border-b text-center">Patient Name</th>
-                            <th class="py-2 px-4 border-b text-center">Prescribed by</th>
-                            <th class="py-2 px-4 border-b text-center">Medicine Name</th>
-                            <th class="py-2 px-4 border-b text-center">Strength</th>
-                            <th class="py-2 px-4 border-b text-center">Mg/Kg/Day</th>
-                            <th class="py-2 px-4 border-b text-center">Dose</th>
-                            <th class="py-2 px-4 border-b text-center">Frequency</th>
-                            <th class="py-2 px-4 border-b text-center">Duration</th>
-                            <th class="py-2 px-4 border-b text-center">Day</th>
-                            <th class="py-2 px-4 border-b text-center">Week</th>
-                            <th class="py-2 px-4 border-b text-center">Month</th>
+                            <th class="py-2 px-2 border-b text-center">Patient Name</th>
+                            <th class="py-2 px-2 border-b text-center">Prescribed by</th>
+                            <th class="py-2 px-2 border-b text-center">Medicine Name</th>
+                            <th class="py-2 px-2 border-b text-center">Strength</th>
+                            <th class="py-2 px-2 border-b text-center">Mg/Kg/Day</th>
+                            <th class="py-2 px-2 border-b text-center">Dose</th>
+                            <th class="py-2 px-2 border-b text-center">Frequency</th>
+                            <th class="py-2 px-2 border-b text-center">Duration</th>
+                            <th class="py-2 px-2 border-b text-center">Day</th>
+                            <th class="py-2 px-2 border-b text-center">Week</th>
+                            <th class="py-2 px-2 border-b text-center">Month</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php while ($medication = mysqli_fetch_assoc($medication_result)) { ?>
                             <tr class="hover:bg-gray-100">
-                                <td class="py-2 px-4 border-b text-center"><?= $medication['patient_name'] ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?= $medication['prescribed_by'] ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?= $medication['medicine_name'] ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?= $medication['strength'] ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?= $medication['mg_kg_day'] ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?= $medication['dose'] ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?= $medication['frequency'] ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?= $medication['duration'] ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?= $medication['day'] ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?= $medication['week'] ?></td>
-                                <td class="py-2 px-4 border-b text-center"><?= $medication['month'] ?></td>
+                                <td class="py-2 px-2 border-b text-center"><?= $medication['patient_name'] ?></td>
+                                <td class="py-2 px-2 border-b text-center"><?= $medication['prescribed_by'] ?></td>
+                                <td class="py-2 px-2 border-b text-center"><?= $medication['medicine_name'] ?></td>
+                                <td class="py-2 px-2 border-b text-center"><?= $medication['strength'] ?></td>
+                                <td class="py-2 px-2 border-b text-center"><?= $medication['mg_kg_day'] ?></td>
+                                <td class="py-2 px-2 border-b text-center"><?= $medication['dose'] ?></td>
+                                <td class="py-2 px-2 border-b text-center"><?= $medication['frequency'] ?></td>
+                                <td class="py-2 px-2 border-b text-center"><?= $medication['duration'] ?></td>
+                                <td class="py-2 px-2 border-b text-center"><?= $medication['day'] ?></td>
+                                <td class="py-2 px-2 border-b text-center"><?= $medication['week'] ?></td>
+                                <td class="py-2 px-2 border-b text-center"><?= $medication['month'] ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>

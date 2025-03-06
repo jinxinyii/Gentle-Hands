@@ -20,151 +20,24 @@ $result = mysqli_query($conn, $sql);
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .wrapper {
-            display: flex;
-        }
-        .sidebar {
-            width: 250px;
-            background: #343a40;
-            color: white;
-            padding: 15px;
-            height: 100vh;
-            position: fixed;
-        }
-        .sidebar a {
-            color: white;
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-        }
-        .sidebar a:hover {
-            background: #007bff;
-        }
-        .content {
-            margin-left: 270px;
-            padding: 20px;
-            width: calc(100% - 270px);
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px gray;
-        }
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-        .btn-container {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        .btn {
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-        }
-        .btn-back {
-            background: red;
-        }
-        .btn-print {
-            background: #17a2b8;
-        }
-        .btn:hover {
-            opacity: 0.8;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background: #007bff;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-        tr:hover {
-            background: #f1f1f1;
-        }
-        .content {
-            margin-left: 260px;
-            padding: 20px;
-            width: calc(100% - 260px);
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px gray;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background: #007bff;
-            color: white;
-        }
-        .button-container {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-            justify-content: center;
-        }
-        .button {
-            padding: 10px 15px;
-            background: #28a745;
-            color: white;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            text-align: center;
-            width: 200px;
-        }
-        .button:hover {
-            background: #218838;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-<div class="sidebar">
-        <h3>Admin Panel</h3>
-        <a href="admin_dashboard.php">🏠 Dashboard</a>
-        <a href="medication_list.php">💊 Medication List</a>
-        <a href="illness_list.php">🩺 Illness List</a>
-        <a href="tables.php">📊 Tables</a>
-        <a href="logout.php">🚪 Logout</a>
+<body class="bg-gray-100">
+<div class="flex">
+    <div class="w-64 bg-gray-800 text-white h-screen p-4 fixed">
+        <h3 class="text-xl font-bold mb-4">Admin Panel</h3>
+        <a href="admin_dashboard.php" class="block py-2 px-4 hover:bg-blue-500">🏠 Dashboard</a>
+        <a href="medication_list.php" class="block py-2 px-4 hover:bg-blue-500">💊 Medication List</a>
+        <a href="illness_list.php" class="block py-2 px-4 hover:bg-blue-500">🩺 Illness List</a>
+        <a href="tables.php" class="block py-2 px-4 hover:bg-blue-500">📊 Tables</a>
+        <a href="logout.php" class="block py-2 px-4 hover:bg-blue-500">🚪 Logout</a>
     </div>
     
-    <div class="content">
-        <div class="container">
-            <h2>G.H. Orphanage Dashboard</h2>
-            <h3>Filter by Category</h3>
-            <select id="category_filter" onchange="filterCategory()">
+    <div class="ml-64 p-4 w-full">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-center mb-4">GENTLE HANDS ORPHANAGE</h2>
+            <h3 class="text-xl font-semibold mb-2">Filter by Category</h3>
+            <select id="category_filter" onchange="filterCategory()" class="block w-full p-2 border border-gray-300 rounded mb-4">
                 <option value="">Show All</option>
                 <?php while ($category_row = mysqli_fetch_assoc($category_result)) { ?>
                     <option value="<?= $category_row['children_category'] ?>" <?= ($selected_category == $category_row['children_category']) ? "selected" : "" ?>>
@@ -173,41 +46,48 @@ $result = mysqli_query($conn, $sql);
                 <?php } ?>
             </select>
 
-            <h3>Registered Users</h3>
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Sex</th>
-                    <th>Date of Birth</th>
-                    <th>Date of Admission</th>
-                    <th>Age of Admission</th>
-                    <th>Current Age</th>
-                    <th>Category</th>
-                </tr>
-                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                    <tr>
-                        <td><?= $row['id'] ?></td>
-                        <td><?= $row['first_name'] ?></td>
-                        <td><?= $row['last_name'] ?></td>
-                        <td><?= $row['sex'] ?></td>
-                        <td><?= $row['date_of_birth'] ?></td>
-                        <td><?= $row['date_of_admission'] ?></td>
-                        <td><?= $row['age_of_admission'] ?></td>
-                        <td><?= $row['current_age'] ?></td>
-                        <td><?= $row['children_category'] ?></td>
-                    </tr>
-                <?php } ?>
-            </table>
+            <h3 class="text-xl font-semibold mb-2">Registered Users</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="py-2 px-4 border-b text-center">ID</th>
+                            <th class="py-2 px-4 border-b text-center">First Name</th>
+                            <th class="py-2 px-4 border-b text-center">Last Name</th>
+                            <th class="py-2 px-4 border-b text-center">Sex</th>
+                            <th class="py-2 px-4 border-b text-center">Date of Birth</th>
+                            <th class="py-2 px-4 border-b text-center">Date of Admission</th>
+                            <th class="py-2 px-4 border-b text-center">Age of Admission</th>
+                            <th class="py-2 px-4 border-b text-center">Current Age</th>
+                            <th class="py-2 px-4 border-b text-center">Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                            <tr class="hover:bg-gray-100">
+                                <td class="py-2 px-4 border-b text-center"><?= $row['id'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $row['first_name'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $row['last_name'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $row['sex'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $row['date_of_birth'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $row['date_of_admission'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $row['age_of_admission'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $row['current_age'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $row['children_category'] ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+</div>
 
-    <script>
-        function filterCategory() {
-            let category = document.getElementById("category_filter").value;
-            window.location.href = "admin_dashboard.php?category=" + category;
-        }
-    </script>
+<script>
+    function filterCategory() {
+        let category = document.getElementById("category_filter").value;
+        window.location.href = "admin_dashboard.php?category=" + category;
+    }
+</script>
 </body>
 </html>

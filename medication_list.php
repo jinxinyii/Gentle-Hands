@@ -16,143 +16,67 @@ $medication_result = mysqli_query($conn, $medication_query);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medication List</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .wrapper {
-            display: flex;
-        }
-        .sidebar {
-            width: 250px;
-            background: #343a40;
-            color: white;
-            padding: 15px;
-            height: 100vh;
-            position: fixed;
-        }
-        .sidebar a {
-            color: white;
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-        }
-        .sidebar a:hover {
-            background: #007bff;
-        }
-        .content {
-            margin-left: 270px;
-            padding: 20px;
-            width: calc(100% - 270px);
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px gray;
-        }
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-        .btn-container {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        .btn {
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-        }
-        .btn-back {
-            background: red;
-        }
-        .btn-add {
-            background: green;
-        }
-        .btn:hover {
-            opacity: 0.8;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background: #007bff;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-        tr:hover {
-            background: #f1f1f1;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-100">
 
-<div class="wrapper">
-    <div class="sidebar">
-        <h3>Admin Panel</h3>
-        <a href="admin_dashboard.php">🏠 Dashboard</a>
-        <a href="medication_list.php">💊 Medication List</a>
-        <a href="illness_list.php">🩺 Illness List</a>
-        <a href="tables.php">📊 Tables</a>
-        <a href="logout.php">🚪 Logout</a>
+<div class="flex">
+    <div class="w-64 bg-gray-800 text-white h-screen p-4 fixed">
+        <h3 class="text-xl font-bold mb-4">ADMIN PANEL</h3>
+        <a href="admin_dashboard.php" class="block py-2 px-4 hover:bg-blue-500">🏠 Dashboard</a>
+        <a href="medication_list.php" class="block py-2 px-4 hover:bg-blue-500">💊 Medication List</a>
+        <a href="illness_list.php" class="block py-2 px-4 hover:bg-blue-500">🩺 Illness List</a>
+        <a href="tables.php" class="block py-2 px-4 hover:bg-blue-500">📊 Tables</a>
+        <a href="logout.php" class="block py-2 px-4 hover:bg-blue-500">🚪 Logout</a>
     </div>
 
-    <div class="content">
-        <div class="container">
-            <h2>Medication List</h2>
+    <div class="ml-64 p-4 w-full">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-center mb-4">Medication List</h2>
 
-            <div class="btn-container">
-                <a href="admin_dashboard.php" class="btn btn-back">Back to Dashboard</a>
-                <a href="add_medication.php" class="btn btn-add">Add Medication</a>
+            <div class="flex justify-between mb-4">
+                <a href="admin_dashboard.php" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700">Back to Dashboard</a>
+                <a href="add_medication.php" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700">Add Medication</a>
             </div>
 
-            <table>
-                <tr>
-                    <th>Patient Name</th>
-                    <th>Prescribed by</th>
-                    <th>Medicine Name</th>
-                    <th>Strength</th>
-                    <th>Mg/Kg/Day</th>
-                    <th>Dose</th>
-                    <th>Frequency</th>
-                    <th>Duration</th>
-                    <th>Day</th>
-                    <th>Week</th>
-                    <th>Month</th>
-                </tr>
-                <?php while ($medication = mysqli_fetch_assoc($medication_result)) { ?>
-                    <tr>
-                        <td><?= $medication['patient_name'] ?></td>
-                        <td><?= $medication['prescribed_by'] ?></td>
-                        <td><?= $medication['medicine_name'] ?></td>
-                        <td><?= $medication['strength'] ?></td>
-                        <td><?= $medication['mg_kg_day'] ?></td>
-                        <td><?= $medication['dose'] ?></td>
-                        <td><?= $medication['frequency'] ?></td>
-                        <td><?= $medication['duration'] ?></td>
-                        <td><?= $medication['day'] ?></td>
-                        <td><?= $medication['week'] ?></td>
-                        <td><?= $medication['month'] ?></td>
-                    </tr>
-                <?php } ?>
-            </table>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="py-2 px-4 border-b text-center">Patient Name</th>
+                            <th class="py-2 px-4 border-b text-center">Prescribed by</th>
+                            <th class="py-2 px-4 border-b text-center">Medicine Name</th>
+                            <th class="py-2 px-4 border-b text-center">Strength</th>
+                            <th class="py-2 px-4 border-b text-center">Mg/Kg/Day</th>
+                            <th class="py-2 px-4 border-b text-center">Dose</th>
+                            <th class="py-2 px-4 border-b text-center">Frequency</th>
+                            <th class="py-2 px-4 border-b text-center">Duration</th>
+                            <th class="py-2 px-4 border-b text-center">Day</th>
+                            <th class="py-2 px-4 border-b text-center">Week</th>
+                            <th class="py-2 px-4 border-b text-center">Month</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($medication = mysqli_fetch_assoc($medication_result)) { ?>
+                            <tr class="hover:bg-gray-100">
+                                <td class="py-2 px-4 border-b text-center"><?= $medication['patient_name'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $medication['prescribed_by'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $medication['medicine_name'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $medication['strength'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $medication['mg_kg_day'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $medication['dose'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $medication['frequency'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $medication['duration'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $medication['day'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $medication['week'] ?></td>
+                                <td class="py-2 px-4 border-b text-center"><?= $medication['month'] ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
